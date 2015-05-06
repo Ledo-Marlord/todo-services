@@ -1,7 +1,8 @@
 var express = require('express');
 var bodyParser = require('body-parser');
-var db = require('./config/db');
-var apiRoutes = require('./app/routes/apiRoutes');
+//var db = require('./config/db');
+var userRoutes = require('./app/routes/users');
+var itemRoutes = require('./app/routes/items');
 var app = express();
 
 app.set('port', process.env.PORT || 1337);
@@ -24,7 +25,8 @@ app.use(function (req, res, next) {
     next();
 });
 
-app.use('/api', apiRoutes);
+app.use('/api/users', userRoutes);
+app.use('/api/items', itemRoutes);
 
 app.listen(app.get('port'));
 console.log('Listening on port: ' + app.get('port') + '...');
