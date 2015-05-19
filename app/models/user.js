@@ -6,20 +6,7 @@ var UserSchema   = new Schema({
     password: String,
     dateCreated: Date,
     lastAccessedList: String,
-    lists: [
-        {
-            title: String,
-            completed: Boolean,
-            dateCreated: Date,
-            items: [
-                {
-                    name: String,
-                    completed: Boolean,
-                    dateCreated: Date
-                }
-            ]
-        }
-    ]
+    lists: []
 
 });
 

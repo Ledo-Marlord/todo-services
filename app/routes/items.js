@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router({mergeParams: true});
 var db = require('../../config/db');
+var User = require('../models/user');
+var Item = require('../models/item');
 
 router.route('/')
     .get(function(req, res) {
