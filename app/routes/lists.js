@@ -3,7 +3,6 @@ var router = express.Router({mergeParams: true});
 var db = require('../../config/db');
 var itemsRouter = require('./items');
 var User = require('../models/user');
-var List = require('../models/list');
 
 router.route('/')
     .get(function(req, res) {
@@ -13,14 +12,13 @@ router.route('/')
         var uid = req.params.uid;
         var body = req.body;
 
-        var list = new List({
+        var list = {
             title: body.title,
             completed: false,
-            dateCreated: new Date(),
-            items: []
-        });
+            dateCreated: new Date()
+        };
 
-        User.findOne({ 'userID': uid }, 'lists', function (err, user) {
+        User.findOne({ 'userID': uid }, function (err, user) {
             if (err) console.log(err);
 
             user.lists.push(list);

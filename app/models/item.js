@@ -7,4 +7,4 @@ var ItemSchema   = new Schema({
     dateCreated: Date
 });
 
-module.exports = mongoose.model('Item', ItemSchema);
+module.exports = ItemSchema;

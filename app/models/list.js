@@ -1,12 +1,13 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+var Item = require('./item');
 
 var ListSchema   = new Schema({
     title: String,
     completed: Boolean,
     dateCreated: Date,
-    items: []
+    items: [Item]
 
 });
 
-module.exports = mongoose.model('List', ListSchema);
+module.exports = ListSchema;
