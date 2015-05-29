@@ -1,14 +1,17 @@
-var express = require('express');
-var router = express.Router({mergeParams: true});
 var db = require('../../config/db');
-var itemsRouter = require('./items');
 var User = require('../models/user');
 
-router.route('/')
-    .get(function(req, res) {
-        res.send({message: 'items get'});
-    })
-    .post(function(req, res) {
+var ListController = {
+
+    getLists: function (req, res) {
+        res.send({message: 'lists get'});
+    },
+
+    getListsById: function (req, res) {
+
+    },
+
+    createList: function (req, res) {
         var uid = req.params.uid;
         var body = req.body;
 
@@ -35,15 +38,15 @@ router.route('/')
                 res.json({message: 'saved user list'});
             });
         })
-    });
+    },
 
+    updateList: function (req, res) {
 
-router.route('/:lid')
-    .get(function(req, res) {
+    },
 
-        console.log(req.params)
-    });
+    deleteList: function (req, res) {
 
-router.use('/:lid/items', itemsRouter);
+    }
+};
 
-module.exports = router;
+module.exports = ListController;

@@ -1,16 +1,17 @@
-var express = require('express');
-var ObjectId = require('mongoose').Types.ObjectId;
-var router = express.Router({mergeParams: true});
 var db = require('../../config/db');
 var User = require('../models/user');
-var Item = require('../models/item');
 
-router.route('/')
-    .get(function(req, res) {
+var ItemController = {
 
-        res.send({message: 'items get'});
-    })
-    .post(function(req, res) {
+    getItems: function (req, res) {
+        res.send('items get');
+    },
+
+    getItemById: function (req, res) {
+
+    },
+
+    createItem: function (req, res) {
         var uid = req.params.uid;
         var lid = req.params.lid;
         var body = req.body;
@@ -23,7 +24,6 @@ router.route('/')
 
         User.findOne({ 'userID': uid}, function (err, user) {
             if (err) console.log(err);
-
             var list = user.lists.id(lid);
             list.items.push(item);
             user.save(function(err, user) {
@@ -39,12 +39,15 @@ router.route('/')
                 res.json({message: 'saved user item'});
             });
         })
-    });
+    },
 
-router.route('/:iid')
-    .get(function(req, res) {
+    updateItem: function (req, res) {
 
-        console.log(req.params)
-    });
+    },
 
-module.exports = router;
+    deleteItem: function (req, res) {
+
+    }
+};
+
+module.exports = ItemController;
